@@ -27,7 +27,15 @@ class WikipediaBM25Repository
              host: Rails.application.credentials.dig(:elastic_cloud, :host),
              port: Rails.application.credentials.dig(:elastic_cloud, :port)
            )
-  end
+  elsif Rails.env.docker?
+    client Elasticsearch::Client.new(
+              user: ENV["ELASTICSEARCH_USERNAME"],
+              password:ENV["ELASTICSEARCH_PASSWORD"],
+              scheme: "https",
+              host: ENV["ELASTICSEARCH_HOST"],
+              port: ENV["ELASTICSEARCH_PORT"]
+            )
+end
 
   index_name "wikipedia-bm25"
 
