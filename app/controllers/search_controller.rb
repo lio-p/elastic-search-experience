@@ -208,9 +208,8 @@ class SearchController < ApplicationController
     @repos = ActiveSupport::OrderedHash.new
     @repos['all'] = nil
 
-    public_repos = [FlightsRepository, EcommerceRepository, LogsRepository, SchemaRepository]
-    private_repos = [LunchRepository, PeopleRepository, ATMRepository,
-                     WikipediaBM25Repository, WikipediaELSERRepository]
+    public_repos = []
+    private_repos = [WikipediaBM25Repository]
 
     index_names = []
 
